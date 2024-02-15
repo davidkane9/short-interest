@@ -102,5 +102,7 @@ urls <- generate_urls(dates_vector)
 
 x <- map(urls, read_csv_safely) %>% compact() %>% bind_rows()
 
-# X consists of 146 separate files, with a total of 2.6 million rows.
+# x consists of 146 separate files, with a total of 2.6 million rows.
+
+# write_rds(x, file = "data/finra_data.rds")
 
