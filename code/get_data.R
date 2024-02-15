@@ -10,8 +10,9 @@
 # https://cdn.finra.org/equity/otcmarket/biweekly/shrt20190415.csv
 
 # Difficulty is that the dates of the files are the 15th or the last day of the
-# month, unless that day is a week-end or a holiday. So, we just try lots of
-# possible dates, only succeeding when the file is there.
+# month, unless that day is a week-end or a holiday. (Or a Presidential
+# funeral!) So, we just try lots of possible dates, only succeeding when the
+# file is there.
 
 # Useful functions, courtesy of ChatGPT
 
@@ -96,9 +97,10 @@ dates_vector <- generate_dates("2017-12-01", "2024-02-28")
 urls <- generate_urls(dates_vector)
 
 
-# Attempt to download and combine all existing files into a single tibble
+# Attempt to download and combine all existing files into a single tibble. How
+# thing takes a couple of minutes.
 
 x <- map(urls, read_csv_safely) %>% compact() %>% bind_rows()
 
-
+# X consists of 146 separate files, with a total of 2.6 million rows.
 
